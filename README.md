@@ -2,9 +2,8 @@
 
 A modern, interactive Connect Four game built for browsers — with local play, AI opponents, and real-time online matchmaking.
 
-<!-- ここにスクリーンショットや動作しているGIF画像をドロップして挿入 -->
-
-**Live Demo:** [https://web-connectfour.onrender.com](https://web-connectfour.onrender.com) *(coming soon)*
+![Connect Four gameplay demo](sample/アニメーション.gif)
+**Live Demo:** [https://web-connectfour.onrender.com](https://connectfour-advance.onrender.com/) *(coming soon)*
 
 ---
 
@@ -49,34 +48,6 @@ A modern, interactive Connect Four game built for browsers — with local play, 
 - **State Management** — Centralized game state (current player, board array, mode, winner) in a dedicated module so UI updates and move validation stay in sync without race conditions.
 - **Real-time Online Play** — Designed a WebSocket server with matchmaking queues, room management, and JWT-authenticated connections so two players can find and play each other reliably.
 - **Rating & Progression** — Applied an Elo-style rating formula (with K-factor tuning for human vs. computer matches) and tied avatar unlocks to rating tiers to give players a sense of progression.
-
----
-
-## 💻 Run Locally
-
-```bash
-git clone https://github.com/nobu0903/connectfour_advance.git
-cd connectfour_advance/Web_ConnectFour
-npm install
-```
-
-Create a `.env` file in `Web_ConnectFour/`:
-
-```env
-MONGODB_URI=your_mongodb_connection_string
-JWT_SECRET=your_secret_key
-PORT=3000
-```
-
-Start the server:
-
-```bash
-npm start
-```
-
-Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-> **Note:** Online play, accounts, and the leaderboard require MongoDB. Local PvP and vs. Computer modes work without logging in.
 
 ---
 
