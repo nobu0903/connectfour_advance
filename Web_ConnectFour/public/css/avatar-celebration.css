@@ -1,0 +1,167 @@
+/* “Level up / evolution” moment when avatar tier increases after a match */
+
+.avatar-tier-celebration {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(4, 10, 22, 0.62);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+}
+
+.avatar-tier-celebration[hidden] {
+    display: none !important;
+}
+
+.avatar-tier-celebration--open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.avatar-tier-celebration__inner {
+    width: min(420px, 94vw);
+    padding: clamp(22px, 4vw, 32px) clamp(18px, 3vw, 26px);
+    border-radius: 22px;
+    text-align: center;
+    background: rgba(14, 22, 38, 0.82);
+    border: 1px solid rgba(130, 220, 255, 0.35);
+    box-shadow:
+        0 0 0 2px rgba(180, 100, 255, 0.25),
+        0 24px 60px rgba(0, 0, 0, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    transform: scale(0.92);
+    transition: transform 0.4s cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+
+.avatar-tier-celebration--open .avatar-tier-celebration__inner {
+    transform: scale(1);
+}
+
+.avatar-tier-celebration__kicker {
+    margin: 0;
+    font-size: clamp(0.72rem, 1.4vw, 0.82rem);
+    font-weight: 800;
+    letter-spacing: 0.35em;
+    color: #7ef7d6;
+    text-shadow: 0 0 18px rgba(120, 255, 210, 0.45);
+}
+
+.avatar-tier-celebration__title {
+    margin: 10px 0 18px;
+    font-size: clamp(1.25rem, 2.4vw, 1.55rem);
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    color: #f8fcff;
+}
+
+.avatar-tier-celebration__evolve {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(10px, 3vw, 22px);
+    margin: 12px 0 16px;
+}
+
+.avatar-tier-celebration__portrait {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.avatar-tier-celebration__portrait img {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(160, 210, 255, 0.45);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+}
+
+.avatar-tier-celebration__portrait--new img {
+    border-color: rgba(130, 255, 210, 0.65);
+    animation: avatar-tier-evolve-pop 0.85s ease 0.15s both;
+}
+
+@keyframes avatar-tier-evolve-pop {
+    0% {
+        transform: scale(0.35) rotate(-8deg);
+        filter: brightness(2.2) blur(2px);
+        box-shadow: 0 0 40px rgba(120, 255, 220, 0.9);
+    }
+    55% {
+        transform: scale(1.12) rotate(3deg);
+        filter: brightness(1.15);
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        filter: brightness(1);
+    }
+}
+
+.avatar-tier-celebration__label {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(230, 242, 255, 0.65);
+}
+
+.avatar-tier-celebration__burst-wrap {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar-tier-celebration__burst {
+    display: block;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: conic-gradient(from 120deg, #40ffe8, #c070ff, #ff6bcb, #40ffe8);
+    animation: avatar-tier-burst-spin 1.2s linear infinite;
+    mask: radial-gradient(circle, transparent 38%, black 42%);
+    -webkit-mask: radial-gradient(circle, transparent 38%, black 42%);
+    opacity: 0.88;
+    filter: blur(0.5px);
+}
+
+@keyframes avatar-tier-burst-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.avatar-tier-celebration__sub {
+    margin: 0 0 18px;
+    font-size: 0.88rem;
+    line-height: 1.45;
+    color: rgba(220, 235, 255, 0.78);
+}
+
+.avatar-tier-celebration__btn {
+    padding: 12px 36px;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    font-size: 0.82rem;
+    color: #fff;
+    background: linear-gradient(95deg, #25c9f0, #6b7cff);
+    box-shadow: 0 8px 24px rgba(60, 140, 255, 0.42);
+    transition: transform 0.15s ease;
+}
+
+.avatar-tier-celebration__btn:hover {
+    transform: translateY(-2px);
+}

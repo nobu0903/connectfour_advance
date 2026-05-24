@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avatar Collection — Connect Four</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/avatar-collection.css">
+    <script src="/include.js" defer></script>
+</head>
+<body class="modern-ui avatar-collection-page">
+    <div id="header-container"></div>
+
+    <main class="avatar-collection-main">
+        <div class="avatar-collection-shell">
+            <section class="avatar-collection-card" aria-labelledby="avatar-collection-title">
+                <div class="avatar-collection-card-inner">
+                <header class="avatar-collection-card__head">
+                    <h1 id="avatar-collection-title" class="avatar-collection-card__title">AVATAR COLLECTION</h1>
+                    <p class="avatar-collection-card__subtitle">Let's play Connect Four</p>
+                    <div class="avatar-collection-tier-markers" aria-hidden="true">
+                        <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span>
+                    </div>
+                </header>
+
+                <div id="avatar-guest-banner" class="avatar-guest-banner" hidden>
+                    Log in to sync your rating and unlock progress tracking.
+                </div>
+
+                <div class="avatar-collection-grid">
+                    <aside class="avatar-profile-panel">
+                        <div class="avatar-profile-panel__inner glass-inset">
+                            <p class="avatar-profile-panel__label">Your loadout</p>
+                            <img id="avatar-profile-img" class="avatar-profile-panel__avatar" src="/images/avatar7.jpg" alt="" width="120" height="120" />
+                            <p id="avatar-profile-name" class="avatar-profile-panel__name">—</p>
+                            <p id="avatar-profile-tier" class="avatar-profile-panel__tier">—</p>
+                            <p id="avatar-profile-rating" class="avatar-profile-panel__rating">—</p>
+                            <div class="avatar-profile-panel__mini-bar-wrap">
+                                <div id="avatar-profile-mini-bar" class="avatar-profile-panel__mini-bar"></div>
+                            </div>
+                            <p id="avatar-profile-mini-caption" class="avatar-profile-panel__mini-caption"></p>
+                        </div>
+                    </aside>
+
+                    <section class="avatar-hero" aria-labelledby="avatar-hero-label">
+                        <button type="button" id="avatar-carousel-prev" class="avatar-carousel-btn avatar-carousel-btn--prev" aria-label="Previous tier">&lt;</button>
+                        <div class="avatar-hero__frame glass-inset">
+                            <div class="avatar-hero__figure">
+                                <img id="avatar-hero-img" class="avatar-hero__img" src="/images/avatar7.jpg" alt="" />
+                                <div id="avatar-hero-lock" class="avatar-hero__lock" hidden aria-hidden="true">
+                                    <svg class="avatar-hero__lock-svg" viewBox="0 0 64 64" width="72" height="72" aria-hidden="true">
+                                        <defs>
+                                            <filter id="avatar-lock-glow" x="-50%" y="-50%" width="200%" height="200%">
+                                                <feGaussianBlur stdDeviation="3" result="b" />
+                                                <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+                                            </filter>
+                                        </defs>
+                                        <path fill="#ff49e8" filter="url(#avatar-lock-glow)" d="M44 28V22a12 12 0 10-24 0v6h-4v22h32V28h-4zm-8 14v6h-8v-6a4 4 0 118 0zm4-14H24v-6a8 8 0 1116 0v6z" />
+                                    </svg>
+                                    <span class="avatar-hero__lock-label">LOCKED</span>
+                                </div>
+                            </div>
+                            <p id="avatar-hero-tier-label" class="avatar-hero__tier-label">BRONZE ROOKIE</p>
+                            <p id="avatar-hero-requirement" class="avatar-hero__requirement">Requires rating —</p>
+                        </div>
+                        <button type="button" id="avatar-carousel-next" class="avatar-carousel-btn avatar-carousel-next" aria-label="Next tier">&gt;</button>
+                    </section>
+
+                    <aside class="avatar-tiles-column" aria-label="All tiers">
+                        <div id="avatar-tier-tiles" class="avatar-tier-tiles"></div>
+                    </aside>
+                </div>
+
+                <section class="avatar-progress-section glass-inset" aria-labelledby="avatar-progress-heading">
+                    <h2 id="avatar-progress-heading" class="visually-hidden">Tier progress</h2>
+                    <div class="avatar-progress-head">
+                        <span class="avatar-progress-label">YOUR RATING</span>
+                        <span id="avatar-progress-rating-display" class="avatar-progress-rating-num">—</span>
+                    </div>
+                    <p id="avatar-progress-caption" class="avatar-progress-caption"></p>
+                    <div class="avatar-progress-track">
+                        <div id="avatar-progress-fill" class="avatar-progress-fill"></div>
+                    </div>
+                </section>
+                </div>
+            </section>
+
+            <div class="avatar-collection-credits">
+                <p>Assets by Freepik (image elements)</p>
+                <p>© 2026 Connect Four Pro. All rights reserved. Budapest.</p>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-container"></div>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script type="module" src="/js/avatar-collection.js"></script>
+</body>
+</html>

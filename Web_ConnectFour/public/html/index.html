@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect Four</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/board.css">
+    <link rel="stylesheet" href="/css/auth.css">
+    <link rel="stylesheet" href="/css/avatar-celebration.css">
+    <link rel="stylesheet" href="/css/avatar-collection.css">
+</head>
+
+<body class="modern-ui">
+    <div id="header-container"></div>
+
+    <main class="container modern-layout">
+        <!-- Mode selection is shown first when the page loads -->
+        <div id="mode-selection" class="mode-selection">
+            <div class="mode-selection-content">
+                <h2>SELECT MODE</h2>
+                <div class="mode-buttons">
+                    <button id="online-mode">ONLINE MATCH</button>
+                    <button id="pvp-mode">PLAYER vs PLAYER</button>
+                    <button id="pvc-mode">PLAYER vs COMPUTER</button>
+                    <div id="pvc-levels" style="display: none; margin-top: 20px;">
+                        <button id="pvc-mode-level1">Level 1</button>
+                        <button id="pvc-mode-level2">Level 2</button>
+                        <button id="pvc-mode-level3">Level 3</button>
+                    </div>
+                </div>
+                <a href="https://www.wikihow.com/Play-Connect-4">How to play Connect Four</a>
+            </div>
+        </div>
+
+        <div id="login-signup-container" class="auth-container">
+            <form id="auth-form" class="auth-form">
+                <h2 id="auth-title">LOG IN</h2>
+                <input type="text" id="username" placeholder="USER NAME" required>
+                <input type="password" id="password" placeholder="PASSWORD" required>
+                <button type="submit" id="auth-submit">LOGIN</button>
+                <div class="auth-toggle">
+                    <span id="auth-toggle-text">You don't have an account? Sign up</span>
+                </div>
+                <div id="auth-error" class="auth-error"></div>
+            </form>
+        </div>
+
+        <div id="post-login-actions" class="post-login-actions" hidden>
+            <div class="post-login-actions__inner">
+                <p class="post-login-actions__label">Choose online play</p>
+                <div class="post-login-actions__buttons">
+                    <button type="button" id="post-login-online-btn" class="post-login-actions__btn post-login-actions__btn--primary">
+                        ONLINE MATCH
+                    </button>
+                    <button type="button" id="post-login-avatar-btn" class="post-login-actions__btn post-login-actions__btn--secondary">
+                        AVATAR
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="online-status-row">
+            <h2 id="gameStatus" style="display: none;"></h2>
+            <button type="button" id="open-avatar-collection-btn" class="open-avatar-collection-btn" hidden>
+                Avatar collection
+            </button>
+        </div>
+
+        <div id="rating-display" class="rating-display" style="display: none;">
+            <div class="player-rating">
+                <span id="player1-name"></span>
+                <span id="player1-rating"></span>
+            </div>
+            <div class="vs">VS</div>
+            <div class="player-rating">
+                <span id="player2-name"></span>
+                <span id="player2-rating"></span>
+            </div>
+        </div>
+
+        <section class="hero-stage">
+            <aside class="player-card player-card--left" aria-label="Player 1 card">
+                <img id="player1-avatar-img" src="/images/avatar7.jpg" alt="Player 1 avatar" onerror="this.src='/images/default-avatar.svg'">
+                <p id="player1-card-label">Player 1</p>
+            </aside>
+
+            <div id="game-container" class="game-shell">
+                <div id="button-container">
+                    <button class="column-button" data-col="0">1</button>
+                    <button class="column-button" data-col="1">2</button>
+                    <button class="column-button" data-col="2">3</button>
+                    <button class="column-button" data-col="3">4</button>
+                    <button class="column-button" data-col="4">5</button>
+                    <button class="column-button" data-col="5">6</button>
+                    <button class="column-button" data-col="6">7</button>
+                </div>
+
+                <div class="board-frame">
+                    <div id="board"></div>
+                </div>
+
+                <div id="game-result" class="game-result" style="display: none;">
+                    <h3>Match result</h3>
+                    <div class="result-icon" id="result-icon" aria-hidden="true">🏁</div>
+                    <div class="result-content">
+                        <div class="player-result">
+                            <img id="result-player1-avatar" class="result-player-avatar" src="/images/avatar7.jpg" alt="You result avatar" onerror="this.src='/images/default-avatar.svg'">
+                            <span id="result-player1-name"></span>
+                            <span id="result-player1-rating-change"></span>
+                            <span id="result-player1-rank-change"></span>
+                        </div>
+                        <div class="player-result">
+                            <img id="result-player2-avatar" class="result-player-avatar" src="/images/avatar7.jpg" alt="Opponent result avatar" onerror="this.src='/images/default-avatar.svg'">
+                            <span id="result-player2-name"></span>
+                            <span id="result-player2-rating-change"></span>
+                            <span id="result-player2-rank-change"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="turnIndicator" class="turn-indicator">Your Turn</div>
+
+                <div class="next-button" id="next-button">
+                    <img src="/images/ui/next-icon.jpg" alt="next Icon" class="next-icon">
+                    <span>Next</span>
+                </div>
+            </div>
+
+            <aside class="player-card player-card--right" aria-label="Player 2 card">
+                <img id="player2-avatar-img" src="/images/avatar7.jpg" alt="Player 2 avatar" onerror="this.src='/images/default-avatar.svg'">
+                <p id="player2-card-label">Player 2</p>
+            </aside>
+        </section>
+
+        <div id="winner-message" style="display: none;"></div>
+
+        <div id="avatar-collection-overlay" class="avatar-collection-overlay" hidden aria-hidden="true">
+            <div class="avatar-collection-overlay__panel" role="dialog" aria-modal="true" aria-labelledby="avatar-collection-overlay-title">
+                <button type="button" id="avatar-collection-overlay-close" class="avatar-collection-overlay__close" aria-label="Close avatar collection">&times;</button>
+                <main class="avatar-collection-main">
+                    <div class="avatar-collection-shell">
+                        <section class="avatar-collection-card" aria-labelledby="avatar-collection-overlay-title">
+                            <div class="avatar-collection-card-inner">
+                                <header class="avatar-collection-card__head">
+                                    <h2 id="avatar-collection-overlay-title" class="avatar-collection-card__title">AVATAR COLLECTION</h2>
+                                    <p class="avatar-collection-card__subtitle">Let's play Connect Four</p>
+                                    <div class="avatar-collection-tier-markers" aria-hidden="true">
+                                        <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span>
+                                    </div>
+                                </header>
+
+                                <div id="avatar-guest-banner" class="avatar-guest-banner" hidden>
+                                    Log in to sync your rating and unlock progress tracking.
+                                </div>
+
+                                <div class="avatar-collection-grid">
+                                    <aside class="avatar-profile-panel">
+                                        <div class="avatar-profile-panel__inner glass-inset">
+                                            <p class="avatar-profile-panel__label">Your loadout</p>
+                                            <img id="avatar-profile-img" class="avatar-profile-panel__avatar" src="/images/avatar7.jpg" alt="" width="120" height="120" />
+                                            <p id="avatar-profile-name" class="avatar-profile-panel__name">—</p>
+                                            <p id="avatar-profile-tier" class="avatar-profile-panel__tier">—</p>
+                                            <p id="avatar-profile-rating" class="avatar-profile-panel__rating">—</p>
+                                            <div class="avatar-profile-panel__mini-bar-wrap">
+                                                <div id="avatar-profile-mini-bar" class="avatar-profile-mini-bar"></div>
+                                            </div>
+                                            <p id="avatar-profile-mini-caption" class="avatar-profile-panel__mini-caption"></p>
+                                        </div>
+                                    </aside>
+
+                                    <section class="avatar-hero" aria-labelledby="avatar-hero-label">
+                                        <button type="button" id="avatar-carousel-prev" class="avatar-carousel-btn avatar-carousel-btn--prev" aria-label="Previous tier">&lt;</button>
+                                        <div class="avatar-hero__frame glass-inset">
+                                            <div class="avatar-hero__figure">
+                                                <img id="avatar-hero-img" class="avatar-hero__img" src="/images/avatar7.jpg" alt="" />
+                                                <div id="avatar-hero-lock" class="avatar-hero__lock" hidden aria-hidden="true">
+                                                    <svg class="avatar-hero__lock-svg" viewBox="0 0 64 64" width="72" height="72" aria-hidden="true">
+                                                        <defs>
+                                                            <filter id="avatar-lock-glow-inline" x="-50%" y="-50%" width="200%" height="200%">
+                                                                <feGaussianBlur stdDeviation="3" result="b" />
+                                                                <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+                                                            </filter>
+                                                        </defs>
+                                                        <path fill="#ff49e8" filter="url(#avatar-lock-glow-inline)" d="M44 28V22a12 12 0 10-24 0v6h-4v22h32V28h-4zm-8 14v6h-8v-6a4 4 0 118 0zm4-14H24v-6a8 8 0 1116 0v6z" />
+                                                    </svg>
+                                                    <span class="avatar-hero__lock-label">LOCKED</span>
+                                                </div>
+                                            </div>
+                                            <p id="avatar-hero-tier-label" class="avatar-hero__tier-label">BRONZE ROOKIE</p>
+                                            <p id="avatar-hero-requirement" class="avatar-hero__requirement">Requires rating —</p>
+                                        </div>
+                                        <button type="button" id="avatar-carousel-next" class="avatar-carousel-btn avatar-carousel-next" aria-label="Next tier">&gt;</button>
+                                    </section>
+
+                                    <aside class="avatar-tiles-column" aria-label="All tiers">
+                                        <div id="avatar-tier-tiles" class="avatar-tier-tiles"></div>
+                                    </aside>
+                                </div>
+
+                                <section class="avatar-progress-section glass-inset" aria-labelledby="avatar-progress-heading">
+                                    <h2 id="avatar-progress-heading" class="visually-hidden">Tier progress</h2>
+                                    <div class="avatar-progress-head">
+                                        <span class="avatar-progress-label">YOUR RATING</span>
+                                        <span id="avatar-progress-rating-display" class="avatar-progress-rating-num">—</span>
+                                    </div>
+                                    <p id="avatar-progress-caption" class="avatar-progress-caption"></p>
+                                    <div class="avatar-progress-track">
+                                        <div id="avatar-progress-fill" class="avatar-progress-fill"></div>
+                                    </div>
+                                </section>
+                            </div>
+                        </section>
+                    </div>
+                </main>
+            </div>
+        </div>
+
+        <div id="avatar-tier-celebration" class="avatar-tier-celebration" hidden aria-hidden="true">
+            <div class="avatar-tier-celebration__inner" role="dialog" aria-modal="true" aria-labelledby="avatar-tier-title">
+                <p class="avatar-tier-celebration__kicker">LEVEL UP!</p>
+                <h2 id="avatar-tier-title" class="avatar-tier-celebration__title">New skin unlocked!</h2>
+                <div class="avatar-tier-celebration__evolve" aria-hidden="true">
+                    <div class="avatar-tier-celebration__portrait">
+                        <img id="avatar-tier-img-old" alt="" width="96" height="96" />
+                        <span class="avatar-tier-celebration__label">Before</span>
+                    </div>
+                    <div class="avatar-tier-celebration__burst-wrap">
+                        <span class="avatar-tier-celebration__burst"></span>
+                    </div>
+                    <div class="avatar-tier-celebration__portrait avatar-tier-celebration__portrait--new">
+                        <img id="avatar-tier-img-new" alt="" width="96" height="96" />
+                        <span class="avatar-tier-celebration__label">After</span>
+                    </div>
+                </div>
+                <p class="avatar-tier-celebration__sub">You’ve reached a new rating tier. New look, same you.</p>
+                <button type="button" id="avatar-tier-celebration-close" class="avatar-tier-celebration__btn">Nice!</button>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-container"></div>
+
+    <script type="module" src="../js/main.js"></script>
+    <script src="../include.js"></script>
+
+</body>
+</html>

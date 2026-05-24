@@ -1,0 +1,400 @@
+:root {
+    --glass-bg: rgba(18, 27, 45, 0.42);
+    --glass-border: rgba(190, 229, 255, 0.35);
+    --text-main: #ecf5ff;
+    --text-muted: rgba(236, 245, 255, 0.78);
+    --accent-cyan: #85f3ff;
+    --accent-pink: #ff9df0;
+}
+
+.modern-ui {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Inter", "Poppins", "Segoe UI", sans-serif;
+    color: var(--text-main);
+    background: url("/images/ui/background-gemini.png") center / cover no-repeat fixed;
+    overflow-x: hidden;
+    position: relative;
+}
+
+.modern-ui::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(circle at 20% 15%, rgba(113, 242, 255, 0.2), transparent 40%),
+        radial-gradient(circle at 75% 10%, rgba(255, 150, 218, 0.22), transparent 42%),
+        linear-gradient(180deg, rgba(3, 8, 18, 0.48) 0%, rgba(3, 8, 18, 0.62) 100%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.modern-ui .container {
+    width: min(1280px, 94vw);
+    margin: 0 auto;
+}
+
+.modern-ui .modern-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: 26px 0 32px;
+}
+
+.modern-ui .hero-title {
+    margin: 0;
+    font-size: clamp(1.6rem, 2.3vw, 2.05rem);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: #f4fbff;
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
+}
+
+.modern-ui #gameStatus {
+    margin: 0;
+    color: var(--accent-cyan);
+    font-size: clamp(1rem, 1.3vw, 1.15rem);
+}
+
+.modern-ui .online-status-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: clamp(12px, 3vw, 28px);
+    margin: 0;
+    min-height: 1.35em;
+}
+
+.modern-ui .open-avatar-collection-btn {
+    padding: 10px 20px;
+    border-radius: 999px;
+    border: 1px solid rgba(120, 220, 255, 0.5);
+    background: linear-gradient(135deg, rgba(20, 50, 90, 0.85), rgba(60, 20, 80, 0.75));
+    color: #e8fbff;
+    font-size: clamp(0.85rem, 1.1vw, 1rem);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(0, 230, 255, 0.25);
+}
+
+.modern-ui .open-avatar-collection-btn:hover {
+    border-color: rgba(160, 240, 255, 0.75);
+    box-shadow: 0 0 26px rgba(0, 240, 255, 0.35);
+}
+
+.modern-ui .hero-stage {
+    width: 100%;
+    display: grid;
+    grid-template-columns: minmax(160px, 0.92fr) minmax(680px, 1.8fr) minmax(160px, 0.92fr);
+    align-items: center;
+    gap: clamp(8px, 1.8vw, 24px);
+}
+
+.modern-ui .player-card {
+    justify-self: center;
+    width: min(100%, 220px);
+    padding: 10px;
+    border-radius: 16px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
+    text-align: center;
+}
+
+.modern-ui .player-card img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 12px;
+    display: block;
+}
+
+.modern-ui .player-card p {
+    margin: 8px 0 2px;
+    color: #f2f9ff;
+    font-size: 1.07rem;
+    letter-spacing: 0.02em;
+}
+
+.modern-ui .rating-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px 22px;
+    border-radius: 999px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(9px);
+}
+
+.modern-ui .player-rating {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.modern-ui .player-rating span {
+    line-height: 1.15;
+}
+
+.modern-ui .vs {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #ffe7a9;
+}
+
+.modern-ui #player1-name,
+.modern-ui #player2-name {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+}
+
+.modern-ui #player1-rating,
+.modern-ui #player2-rating {
+    font-size: 1.06rem;
+    color: #fff4c3;
+    font-weight: 700;
+}
+
+.modern-ui .game-result {
+    width: min(980px, 94vw);
+    background: rgba(12, 20, 35, 0.78);
+    border: 1px solid rgba(194, 233, 255, 0.42);
+    border-radius: 22px;
+    padding: 26px 32px;
+    color: #f4f8ff;
+    text-align: center;
+    backdrop-filter: blur(12px);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+    box-shadow: 0 20px 50px rgba(2, 6, 14, 0.58);
+}
+
+.modern-ui .game-result h3 {
+    margin: 0 0 12px;
+    font-size: 1.1rem;
+    color: #fef3b8;
+}
+
+.modern-ui .result-icon {
+    font-size: 2.2rem;
+    line-height: 1;
+    margin: 4px 0 14px;
+}
+
+.modern-ui .result-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    gap: 22px;
+}
+
+.modern-ui .player-result {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 12px 4px;
+}
+
+.modern-ui #result-player1-rating-change,
+.modern-ui #result-player2-rating-change {
+    font-weight: 700;
+}
+
+.modern-ui .result-player-avatar {
+    width: clamp(88px, 11vw, 126px);
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    border: 2px solid rgba(193, 230, 252, 0.72);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
+    object-fit: cover;
+    background: rgba(14, 21, 37, 0.65);
+}
+
+.modern-ui #result-player1-name,
+.modern-ui #result-player2-name {
+    font-size: clamp(1.03rem, 1.4vw, 1.2rem);
+    font-weight: 700;
+    color: #f3f9ff;
+}
+
+.modern-ui #result-player1-rating-change,
+.modern-ui #result-player2-rating-change,
+.modern-ui #result-player1-rank-change,
+.modern-ui #result-player2-rank-change {
+    font-size: clamp(0.95rem, 1.2vw, 1.08rem);
+}
+
+.modern-ui #result-player1-rank-change,
+.modern-ui #result-player2-rank-change {
+    color: #e0ebff;
+}
+
+/* Keep "Rank:" + position readable; arrows use their own colors. */
+.modern-ui #result-player1-rank-change .rank-line__label,
+.modern-ui #result-player2-rank-change .rank-line__label {
+    color: #dbe8ff;
+}
+
+.modern-ui #result-player1-rank-change .rank-line__pos:not(.rank-line__pos--top) .rank-line__hash,
+.modern-ui #result-player2-rank-change .rank-line__pos:not(.rank-line__pos--top) .rank-line__hash {
+    color: #f0f7ff;
+}
+
+.modern-ui .rating-increase {
+    color: #7effbf;
+}
+
+.modern-ui .rating-decrease {
+    color: #ff9ca6;
+}
+
+.modern-ui .rank-up {
+    color: #8ef8bf;
+}
+
+.modern-ui .rank-down {
+    color: #ffb1ba;
+}
+
+.modern-ui .rank-unchanged {
+    color: #dbe8ff;
+}
+
+/* Rank line: SVG arrows + tabular nums; #1 gets gold + crown (not emoji). */
+.modern-ui .rank-line {
+    display: inline;
+    white-space: nowrap;
+}
+
+.modern-ui .rank-line__label {
+    font-weight: 600;
+}
+
+.modern-ui .rank-line__pos {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.28em;
+    font-variant-numeric: tabular-nums;
+}
+
+.modern-ui .rank-line__hash {
+    font-variant-numeric: tabular-nums;
+}
+
+.modern-ui .rank-line__pos--top {
+    gap: 0.32em;
+}
+
+.modern-ui .rank-line__pos--top .rank-line__hash {
+    background: linear-gradient(185deg, #fff4c8 0%, #f0c852 42%, #c9941e 88%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: 800;
+}
+
+.modern-ui .rank-line__crown-icon {
+    flex-shrink: 0;
+    fill: #ffd76a;
+    filter: drop-shadow(0 1px 2px rgba(80, 50, 0, 0.35)) drop-shadow(0 0 6px rgba(255, 200, 80, 0.45));
+}
+
+.modern-ui .rank-line__delta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.42em;
+    margin-left: 0.42em;
+    font-variant-numeric: tabular-nums;
+    vertical-align: middle;
+}
+
+.modern-ui .rank-line__delta-num {
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+.modern-ui .rank-line__arrow {
+    flex-shrink: 0;
+    display: block;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.35));
+}
+
+.modern-ui .rank-line__arrow--up path {
+    fill: #38e09e;
+}
+
+.modern-ui .rank-line__arrow--down path {
+    fill: #ff6d84;
+}
+
+.modern-ui .rank-line__delta--up .rank-line__delta-num {
+    color: #6af0b8;
+}
+
+.modern-ui .rank-line__delta--down .rank-line__delta-num {
+    color: #ffa8b5;
+}
+
+.modern-ui.result-open .hero-stage > .player-card {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+@media (max-width: 1160px) {
+    .modern-ui .hero-stage {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        gap: 10px;
+    }
+
+    .modern-ui .player-card {
+        width: min(360px, 74vw);
+        display: none;
+    }
+}
+
+@media (max-width: 720px) {
+    .modern-ui .container {
+        width: calc(100vw - 6px);
+    }
+
+    .modern-ui .modern-layout {
+        padding-top: 18px;
+        padding-left: 0;
+        padding-right: 0;
+        gap: 10px;
+    }
+
+    .modern-ui .hero-title {
+        font-size: 1.35rem;
+    }
+
+    .modern-ui .rating-display {
+        width: min(96vw, 640px);
+        border-radius: 18px;
+        gap: 12px;
+        padding: 10px 10px;
+    }
+
+    .modern-ui .game-result {
+        width: min(94vw, 680px);
+        padding: 18px 14px;
+        border-radius: 16px;
+    }
+
+    .modern-ui .result-content {
+        gap: 10px;
+    }
+}

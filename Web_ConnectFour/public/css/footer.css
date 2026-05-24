@@ -1,0 +1,73 @@
+.modern-ui footer {
+    width: min(1280px, 94vw);
+    margin: 18px auto 20px;
+    min-height: 84px;
+    padding: 14px 18px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 14px;
+    background: rgba(10, 19, 34, 0.5);
+    border: 1px solid rgba(177, 221, 251, 0.34);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+    box-sizing: border-box;
+}
+
+.modern-ui footer .social_icon,
+.modern-ui footer .menu {
+    margin: 6px 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    list-style: none;
+}
+
+.modern-ui footer .social_icon li a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    color: #d8edff;
+    text-decoration: none;
+    background: rgba(37, 56, 84, 0.45);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.modern-ui footer .social_icon li a:hover {
+    transform: translateY(-1px);
+    background: rgba(68, 103, 151, 0.55);
+}
+
+.modern-ui footer .menu li a {
+    color: rgba(229, 242, 252, 0.8);
+    font-size: 0.92rem;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+}
+
+.modern-ui footer .menu li a:hover {
+    color: #f5fbff;
+}
+
+.modern-ui footer .copyright {
+    margin: 4px 0 0;
+    color: rgba(229, 242, 252, 0.74);
+    font-size: 0.8rem;
+    text-align: center;
+    line-height: 1.35;
+}
+
+@media (max-width: 620px) {
+    .modern-ui footer {
+        width: calc(100vw - 10px);
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

@@ -1,0 +1,227 @@
+/* Leaderboard — glass panel, same PLAY page background via .modern-ui in styles.css */
+
+.leaderboard-page .leaderboard-main {
+    width: min(1280px, 94vw);
+    margin: 0 auto;
+    padding: 18px 16px 32px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.leaderboard-panel-outer {
+    width: min(560px, 96vw);
+    padding: 2px;
+    border-radius: 22px;
+    background: linear-gradient(145deg, rgba(0, 238, 255, 0.95), rgba(186, 85, 255, 0.88), rgba(255, 105, 180, 0.82));
+    box-shadow:
+        0 0 40px rgba(120, 220, 255, 0.25),
+        0 0 60px rgba(200, 120, 255, 0.18),
+        0 22px 50px rgba(0, 0, 0, 0.42);
+}
+
+.leaderboard-panel {
+    border-radius: 20px;
+    background: rgba(14, 22, 38, 0.58);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(180, 228, 255, 0.22);
+    padding: clamp(22px, 4vw, 34px) clamp(18px, 3vw, 28px) clamp(22px, 4vw, 28px);
+    display: flex;
+    flex-direction: column;
+}
+
+.leaderboard-panel__header {
+    text-align: center;
+    margin-bottom: 18px;
+}
+
+.leaderboard-panel__title {
+    margin: 0;
+    font-size: clamp(1.35rem, 2.4vw, 1.75rem);
+    font-weight: 800;
+    letter-spacing: 0.22em;
+    color: #f8fcff;
+    text-shadow: 0 2px 18px rgba(0, 0, 0, 0.35);
+}
+
+.leaderboard-scroll-wrap {
+    position: relative;
+    flex: 0 1 auto;
+    width: 100%;
+    min-height: 96px;
+}
+
+.leaderboard-loading {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(236, 247, 255, 0.82);
+    font-size: 0.98rem;
+}
+
+.leaderboard-loading[hidden],
+.leaderboard-list[hidden] {
+    display: none !important;
+}
+
+.leaderboard-list {
+    max-height: min(52vh, 420px);
+    overflow-y: auto;
+    padding-right: 6px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.35) transparent;
+}
+
+.leaderboard-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.leaderboard-list::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.35);
+    border-radius: 999px;
+}
+
+.leaderboard-row {
+    display: grid;
+    grid-template-columns: minmax(44px, 0.65fr) 44px 1fr auto;
+    align-items: center;
+    gap: 10px 12px;
+    padding: 12px 14px;
+    margin-bottom: 8px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(180, 220, 255, 0.12);
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.leaderboard-row:last-child {
+    margin-bottom: 0;
+}
+
+.leaderboard-row:hover {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(180, 220, 255, 0.22);
+}
+
+.leaderboard-row--1 {
+    background: linear-gradient(90deg, rgba(60, 200, 255, 0.18), rgba(180, 100, 255, 0.14));
+    border-color: rgba(130, 230, 255, 0.35);
+    box-shadow: 0 0 28px rgba(100, 210, 255, 0.15);
+}
+
+.leaderboard-rank {
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+    font-size: clamp(1rem, 2vw, 1.12rem);
+}
+
+.leaderboard-row--1 .leaderboard-rank {
+    color: #ffd76a;
+    text-shadow: 0 0 14px rgba(255, 215, 120, 0.45);
+}
+
+.leaderboard-row--2 .leaderboard-rank {
+    color: #d8e4ef;
+    text-shadow: 0 0 10px rgba(220, 230, 245, 0.35);
+}
+
+.leaderboard-row--3 .leaderboard-rank {
+    color: #e8a878;
+    text-shadow: 0 0 10px rgba(232, 168, 120, 0.25);
+}
+
+.leaderboard-row--rest .leaderboard-rank {
+    color: rgba(240, 248, 255, 0.88);
+}
+
+.leaderboard-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(180, 220, 255, 0.35);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.leaderboard-row--1 .leaderboard-avatar {
+    border-color: rgba(255, 215, 120, 0.55);
+}
+
+.leaderboard-name {
+    font-weight: 600;
+    font-size: clamp(0.92rem, 1.6vw, 1.02rem);
+    color: #f2f9ff;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.leaderboard-score {
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    font-size: clamp(0.95rem, 1.7vw, 1.08rem);
+    color: rgba(255, 255, 255, 0.92);
+    justify-self: end;
+}
+
+.leaderboard-empty,
+.leaderboard-error {
+    padding: 28px 16px;
+    text-align: center;
+    color: rgba(236, 247, 255, 0.78);
+    font-size: 0.98rem;
+    line-height: 1.45;
+}
+
+/* Use .leaderboard-panel__actions (not <footer>) — avoid matching global `footer` rules in footer.css */
+.leaderboard-panel__actions {
+    flex-shrink: 0;
+    margin-top: 20px;
+    padding-top: 4px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.leaderboard-play-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 36px;
+    border-radius: 999px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    font-size: clamp(0.78rem, 1.4vw, 0.88rem);
+    color: #fff;
+    text-decoration: none;
+    background: linear-gradient(95deg, #25c9f0, #4a9fff, #6b7cff);
+    box-shadow: 0 8px 28px rgba(60, 160, 255, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.leaderboard-play-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 36px rgba(60, 160, 255, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.leaderboard-play-btn__chev {
+    font-size: 1.15em;
+    opacity: 0.95;
+}
+
+@media (max-width: 520px) {
+    .leaderboard-row {
+        grid-template-columns: 40px 40px 1fr auto;
+        gap: 8px;
+        padding: 10px 10px;
+    }
+
+    .leaderboard-avatar {
+        width: 40px;
+        height: 40px;
+    }
+}

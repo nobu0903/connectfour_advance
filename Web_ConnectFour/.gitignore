@@ -1,0 +1,4 @@
+node_modules/
+.env
+# Parent bug notes (if this folder is the git root)
+../errors/

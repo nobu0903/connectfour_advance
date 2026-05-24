@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard — Connect Four</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/ranking.css">
+    <script src="/include.js" defer></script>
+</head>
+<body class="modern-ui leaderboard-page">
+    <div id="header-container"></div>
+
+    <main class="leaderboard-main">
+        <div class="leaderboard-panel-outer">
+            <section class="leaderboard-panel" aria-labelledby="leaderboard-heading">
+                <header class="leaderboard-panel__header">
+                    <h1 id="leaderboard-heading" class="leaderboard-panel__title">LEADERBOARD</h1>
+                </header>
+
+                <div class="leaderboard-scroll-wrap">
+                    <div id="leaderboard-loading" class="leaderboard-loading" role="status">
+                        Loading leaderboard…
+                    </div>
+                    <div id="leaderboard-list" class="leaderboard-list" hidden></div>
+                </div>
+
+                <div class="leaderboard-panel__actions">
+                    <a href="/html/index.html" class="leaderboard-play-btn">
+                        <span class="leaderboard-play-btn__chev" aria-hidden="true">»</span>
+                        PLAY AGAIN
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <div id="footer-container"></div>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="/js/ranking.js"></script>
+</body>
+</html>

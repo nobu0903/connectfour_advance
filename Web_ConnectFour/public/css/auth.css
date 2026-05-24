@@ -1,0 +1,167 @@
+.modern-ui .auth-container {
+    display: none;
+    position: fixed;
+    top: 52%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(360px, 82vw);
+    border-radius: 20px;
+    border: 1px solid rgba(180, 224, 255, 0.4);
+    background: rgba(18, 28, 48, 0.48);
+    box-shadow:
+        0 18px 44px rgba(0, 0, 0, 0.42),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    z-index: 1100;
+}
+
+.modern-ui .auth-container.active {
+    display: block;
+}
+
+.modern-ui .auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 22px 24px 20px;
+}
+
+.modern-ui .auth-form h2 {
+    margin: 0 0 2px;
+    font-size: 1.45rem;
+    letter-spacing: 0.06em;
+    color: #f6fbff;
+    text-align: left;
+}
+
+.modern-ui .auth-form input {
+    height: 42px;
+    border-radius: 10px;
+    border: 1px solid rgba(178, 219, 247, 0.26);
+    background: rgba(7, 13, 26, 0.34);
+    color: #f0f8ff;
+    padding: 0 12px;
+    font-size: 0.95rem;
+    outline: none;
+}
+
+.modern-ui .auth-form input:focus {
+    border-color: rgba(146, 238, 255, 0.65);
+    box-shadow: 0 0 0 3px rgba(141, 236, 255, 0.16);
+}
+
+.modern-ui .auth-form input::placeholder {
+    color: rgba(227, 240, 252, 0.56);
+}
+
+.modern-ui .auth-form button {
+    height: 42px;
+    border: 1px solid rgba(182, 224, 255, 0.4);
+    border-radius: 10px;
+    background: linear-gradient(90deg, rgba(89, 227, 255, 0.38), rgba(218, 129, 255, 0.38));
+    color: #f3f9ff;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    cursor: pointer;
+    transition: transform 0.18s ease, opacity 0.18s ease;
+}
+
+.modern-ui .auth-form button:hover {
+    transform: translateY(-1px);
+    opacity: 0.95;
+}
+
+.modern-ui .auth-toggle {
+    margin-top: 3px;
+    font-size: 0.86rem;
+    color: rgba(236, 245, 255, 0.8);
+    text-align: center;
+}
+
+.modern-ui .auth-toggle span {
+    color: #9de9ff;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.modern-ui .auth-error {
+    color: #ffb1bb;
+    text-align: center;
+    font-size: 0.86rem;
+    margin-top: -4px;
+    display: none;
+}
+
+.modern-ui .auth-error.active {
+    display: block;
+}
+
+.modern-ui .post-login-actions[hidden] {
+    display: none !important;
+}
+
+.modern-ui .post-login-actions {
+    display: block;
+    position: fixed;
+    top: 52%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1100;
+    width: min(420px, 90vw);
+    pointer-events: auto;
+}
+
+.modern-ui .post-login-actions__inner {
+    padding: 22px 24px 26px;
+    border-radius: 20px;
+    border: 1px solid rgba(180, 224, 255, 0.4);
+    background: rgba(18, 28, 48, 0.55);
+    box-shadow:
+        0 18px 44px rgba(0, 0, 0, 0.42),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    text-align: center;
+}
+
+.modern-ui .post-login-actions__label {
+    margin: 0 0 16px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #f0f8ff;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+}
+
+.modern-ui .post-login-actions__buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.modern-ui .post-login-actions__btn {
+    height: 46px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    cursor: pointer;
+    border: 1px solid rgba(160, 220, 255, 0.45);
+    transition: transform 0.18s ease, opacity 0.18s ease;
+}
+
+.modern-ui .post-login-actions__btn:hover {
+    transform: translateY(-1px);
+    opacity: 0.96;
+}
+
+.modern-ui .post-login-actions__btn--primary {
+    background: linear-gradient(90deg, rgba(89, 227, 255, 0.45), rgba(218, 129, 255, 0.45));
+    color: #f8fcff;
+}
+
+.modern-ui .post-login-actions__btn--secondary {
+    background: rgba(10, 18, 36, 0.65);
+    color: #d4f4ff;
+    border-color: rgba(130, 200, 255, 0.35);
+}
