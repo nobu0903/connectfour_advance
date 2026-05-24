@@ -17,6 +17,26 @@ dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const PUBLIC_DIR = path.join(__dirname, 'public');
+
+const DEPLOYMENT_ORIGINS = [
+    'http://localhost:3000',
+    'https://web-connectfour.onrender.com',
+    'https://connectfour-advance.onrender.com',
+];
+if (process.env.APP_URL) {
+    DEPLOYMENT_ORIGINS.push(process.env.APP_URL.replace(/\/$/, ''));
+}
+
+const WS_ORIGINS = DEPLOYMENT_ORIGINS.flatMap((origin) => {
+    if (origin.startsWith('https://')) {
+        return [origin.replace('https://', 'wss://'), origin.replace('https://', 'ws://')];
+    }
+    if (origin.startsWith('http://')) {
+        return [origin.replace('http://', 'ws://')];
+    }
+    return [];
+});
 
 const app = express();
 const server = http.createServer(app);
@@ -43,20 +63,14 @@ app.use(helmet({
     contentSecurityPolicy: {
         directives: {
             defaultSrc: ["'self'"],
-            connectSrc: [
-                "'self'",
-                "ws://localhost:3000",
-                "wss://localhost:3000",
-                "ws://web-connectfour.onrender.com",
-                "wss://web-connectfour.onrender.com"
-            ],
+            connectSrc: ["'self'", ...WS_ORIGINS],
             scriptSrc: ["'self'", "'unsafe-inline'"],
             styleSrc: ["'self'", "'unsafe-inline'"],
         },
     },
 }));
 app.use(cors({
-    origin: ['http://localhost:3000', 'https://web-connectfour.onrender.com'],
+    origin: DEPLOYMENT_ORIGINS,
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
@@ -607,20 +621,23 @@ app.get('/api/user-count', async (req, res) => {
 });
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '/public/html/index.html'));
+    res.sendFile(path.join(PUBLIC_DIR, 'html', 'index.html'));
 });
 
 app.get('/index.html', (req, res) => {
     res.redirect(301, '/');
 });
 
-app.use(express.static(path.join(__dirname, '/public'), {
+app.use(express.static(PUBLIC_DIR, {
     maxAge: '1h',
     etag: true,
     lastModified: true,
     setHeaders: (res, pathForFile) => {
         if (pathForFile.endsWith('.css')) {
             res.setHeader('Content-Type', 'text/css; charset=utf-8');
+            res.setHeader('Cache-Control', 'public, max-age=3600');
+        } else if (pathForFile.endsWith('.js')) {
+            res.setHeader('Content-Type', 'application/javascript; charset=utf-8');
             res.setHeader('Cache-Control', 'public, max-age=3600');
         }
     }

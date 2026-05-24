@@ -1,7 +1,8 @@
 const https = require('https');
 
 exports.handler = async (event, context) => {
-    const url = 'https://web-connectfour.onrender.com/ping';
+    const base = process.env.APP_URL || 'https://connectfour-advance.onrender.com';
+    const url = `${base.replace(/\/$/, '')}/ping`;
 
     return new Promise((resolve, reject) => {
         const req = https.get(url, (res) => {
